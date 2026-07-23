@@ -1,7 +1,26 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0)
 
+cd $(dirname $0)
+root=${PWD}/root.d
+
+dotlink () {
+    real=${root}/dot-${1}
+    link=${HOME}/.${1}
+    [ -L  ${link} ] && rm ${link}
+    ln -s ${real} ${link}
+}
+dotlink profile
+dotlink bashrc
+dotlink config
+exit
+[ -L ~/.bashrc  ] && rm ${HOME}/.bashrc
+ln -s ${}PWD/dot-profile ~/.profile
+ln -s $PWD/dot-profile ~/.profile
+[ -L ~/.profile ] && echo new: $(readlink ~/.profile)
+
+exit
+echo 777 $PWD
 which stow && {
     stow . --dotfiles -d ${PWD}/root.d -t ~
     exit
@@ -24,4 +43,5 @@ ln -s ${PWD}/root.d/dot-bashrc ~/.bashrc
 ln -s ${PWD}/root.d/dot-profile ~/.profile
 ln -s ${PWD}/root.d/dot-config ~/.config
 
-
+#[ -L ~/.bashrc ] && rm ~/.bashrc
+echo ln -s $PWD/dot-bashrc ~/.bashrc

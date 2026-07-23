@@ -1,25 +1,88 @@
 #!/usr/bin/env bash
 
-[ -f ~/DEBUG ] && echo "[:dbg:] ++[$BASH_SOURCE]"
-
-# Prevent accidental closing of connection by requiring an explicit exit.
-exit () { echo in top shell. try: builtin exit.; }
-
-# Insure [~/.local/bin] exists
-mkdir -p ~/.local/bin
-
-# Insure [~/.local/bin] is on PATH
-[[ ! ":$PATH:" == *":${HOME}/.local/bin:"* ]] && export PATH=~/.local/bin:foo:$PATH
-
-# Legacy export. Seek its removal
-export BCH_000_INITIALIZED=1
-
-[ -f ~/DEBUG ] && echo "[:dbg:] --[$BASH_SOURCE]"
+#####################################################
+#                                                   #
+#    START OF SCRIPT                                #
+#                                                   #
+#    This is a minimalist .profile script. If       #
+#    you want to add functionally, consider         #
+#    adding to .bashrc first. Things that should    #
+#    be done only once can be done there as long    #
+#    as proper checking is done.                    #
+#                                                   #
+#####################################################
 
 
-echo to turn on debugging, try \'touch ~/DEBUG\'
-bash
+#====================================================
+#  Initial words
+#====================================================
 
-echo IN PROFILE. 
+    echo ---.profile begin-----------------------
 
-#==END OF SCRIPT===================================
+
+#====================================================
+#  Exit control
+#----------------------------------------------------
+#  Intercept the 'exit' command to prevent
+#  accidentaly closing a terminal session
+#====================================================
+
+    print_exit_warning () { 
+        echo
+        echo "    ################################"
+        echo "    #  YOU ARE IN THE LOGIN SHELL  #"
+        echo "    #  use 'builtin exit' to exit  #"
+        echo "    ################################"
+        echo
+    }
+
+    exit () { 
+        print exit_warning 
+    }
+
+
+#====================================================
+#  The local bin (BCH_LBIN)
+#----------------------------------------------------
+#  Configure our preferred path to our local bin.
+#  Guarantee it exists and is on PATH.
+#====================================================
+
+    export BCH_LBIN=${HOME}/.local/bin
+    mkdir -p ${BCH_LBIN}
+    if [[ ! ":${PATH}:" == *":${BCH_LBIN}:"* ]]
+    then
+        export PATH=${PATH}:${BCH_LBIN}
+    fi
+
+
+#====================================================
+#  Legacy export. Seek its removal
+#====================================================
+
+    export BCH_000_INITIALIZED=1
+
+
+#====================================================
+#  Final words
+#====================================================
+
+    echo "to turn on debugging, try 'touch ~/DEBUG'"
+    echo ---.profile end-------------------------
+
+
+#====================================================
+# Start subshell; print warning when it ends
+#====================================================
+
+    bash
+    print_exit_warning
+
+
+#####################################################
+#                                                   #
+#    END OF SCRIPT.                                 #
+#                                                   #
+#    Nothing below is under version control.        #
+#                                                   #
+#####################################################
