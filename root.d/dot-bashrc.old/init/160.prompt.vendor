@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+source $BCH_000_VEND/git-prompt.sh
