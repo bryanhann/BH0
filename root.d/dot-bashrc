@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
 [ -f ~/DEBUG ] && echo "[:dbg:] ++[$BASH_SOURCE]"
-source ${HOME}/.config/bch/activate.sh
+source $(readlink ${BASH_SOURCE[0]}).old/activate.sh
 [ -f ~/DEBUG ] && echo "[:dbg:] --[$BASH_SOURCE]"
 
 #==END OF SCRIPT===================================
