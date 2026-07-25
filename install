@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 cd $(dirname $0)
 root=${PWD}/root.d
 
@@ -12,36 +11,3 @@ dotlink () {
 }
 dotlink profile
 dotlink bashrc
-dotlink config
-exit
-[ -L ~/.bashrc  ] && rm ${HOME}/.bashrc
-ln -s ${}PWD/dot-profile ~/.profile
-ln -s $PWD/dot-profile ~/.profile
-[ -L ~/.profile ] && echo new: $(readlink ~/.profile)
-
-exit
-echo 777 $PWD
-which stow && {
-    stow . --dotfiles -d ${PWD}/root.d -t ~
-    exit
-}
-
-
-[ -d ~/.copy.dotfiles ] && {
-    for ii in $(seq 99); do
-        [ -d ~/.copy.dotfiles.${ii} ] && continue
-        mv ~/.copy.dotfiles ~/.copy.dotfiles.${ii}
-        break
-    done
-}
-
-mkdir ~/.copy.dotfiles
-mv ~/.bashrc ~/.copy.dotfiles/
-mv ~/.profile ~/.copy.dotfiles
-mv ~/.config ~/.copy.dotfiles
-ln -s ${PWD}/root.d/dot-bashrc ~/.bashrc
-ln -s ${PWD}/root.d/dot-profile ~/.profile
-ln -s ${PWD}/root.d/dot-config ~/.config
-
-#[ -L ~/.bashrc ] && rm ~/.bashrc
-echo ln -s $PWD/dot-bashrc ~/.bashrc

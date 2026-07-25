@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 [ -f ~/DEBUG ] && echo "[:dbg:] ++[$BASH_SOURCE]"
+$(dirname $(readlink ${BASH_SOURCE[0]}))/dot-config/.install.sh
 source $(readlink ${BASH_SOURCE[0]}).old/activate.sh
 [ -f ~/DEBUG ] && echo "[:dbg:] --[$BASH_SOURCE]"
 
 #==END OF SCRIPT===================================
+
