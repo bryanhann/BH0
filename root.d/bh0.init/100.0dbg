@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+0dbg () {
+    [ -f ~/DEBUG ] && echo DEBUG $*
+}

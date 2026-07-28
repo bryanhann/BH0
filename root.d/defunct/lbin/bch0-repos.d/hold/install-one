@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+f () {
+    [ ! -f $1 ] && echo }}} no $1
+    [   -f $1 ] && echo }}} yes $1
+    [   -f $1 ] && $*
+}
+
+f ${BCH_BASE}/${1}/install.sh
+f ${BCH_BASE}/${1}/.bch/install.sh

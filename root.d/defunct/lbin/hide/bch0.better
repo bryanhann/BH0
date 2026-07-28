@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+    this=${BASH_SOURCE[0]}
+    real=$(readlink ${this})
+    if [ ${this}. == ${0}. ]; then
+        export dot=
+        export fin=exit
+        export bin=${real}.d
+        export cmd=$(basename ${this})
+    else
+        dot=.
+        fin=return
+        bin=${real}.d
+        cmd=$(basename ${this})
+    fi
+
+    if [ -f ${bin}/$1 ]; then
+        $dot ${bin}/$*
+        $fin $?
+    else
+        $dot ${bin}/help $*
+        $fin $?
+    fi
+

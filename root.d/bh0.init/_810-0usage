@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+__usage () {
+    local bin=$1.d
+    echo "USAGE:"
+    clr_bold "    $(basename $1) SUBCOMMAND"
+    echo SUBCOMMANDS:
+    for path in $(0ls $1.d); do
+         [ -f $path ] || continue
+        clr_bold "    $(basename $path)"
+    done
+}
+0usage () {
+    [ ! $1. == . ] && __usage $1
+    [ ! $1. == . ] && return
+    echo "USAGE:"
+    0bold "    $(0cmdline) SUBCOMMAND"
+    echo SUBCOMMANDS:
+    for name in $(ls $bin); do
+        [ -f ${bin}/${name} ] && 0bold "    $name"
+    done
+    echo
+    echo "(some commands accept '--help')"
+}

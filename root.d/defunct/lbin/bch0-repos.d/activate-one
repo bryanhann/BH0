@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+s () {
+    [ ! -f $1 ] && echo "no  . $1"
+    [   -f $1 ] && bold0 ". $1"
+}
+s ${BCH_BASE}/${1}/activate.sh
+s ${BCH_BASE}/${1}/.bch/activate.sh

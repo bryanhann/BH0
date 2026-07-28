@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo try bch0.repos clone-all
+echo try bch0.repos activate--all
+

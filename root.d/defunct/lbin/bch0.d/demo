@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+[ $1. == --help. ] && cat <<EOF && $fin
+
+USAGE:
+    ${cmd} $(basename ${BASH_SOURCE[0]})
+    . ${cmd} $(basename ${BASH_SOURCE[0]})
+
+A simple demo to report on variables that
+were set to call or source it.
+EOF
+
+echo
+echo ++[ $dot ${BASH_SOURCE[0]}] $* 
+echo args: "$@"
+echo dot: $dot
+echo fin: $fin
+echo cmd: $cmd
+echo bin: $bin
+echo --[ $dot ${BASH_SOURCE[0]}] $* 

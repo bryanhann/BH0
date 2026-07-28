@@ -4,10 +4,11 @@ cd $(dirname $0)
 root=${PWD}/root.d
 
 dotlink () {
-    real=${root}/dot-${1}
+    real=${root}/${1}
     link=${HOME}/.${1}
     [ -L  ${link} ] && rm ${link}
     ln -s ${real} ${link}
 }
+
 dotlink profile
 dotlink bashrc

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+cat <<EOF
+
+USAGE:
+    ${cmd} SUBCOMMAND [--help]
+SUBCOMMANDS:
+EOF
+for name in $(ls $bin); do
+    echo "    $name"
+done
+
+

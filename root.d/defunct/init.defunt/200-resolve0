@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+resolve0 () 
+{ 
+    local path=$1;
+    while true; do
+        readlink $path > /dev/null || break;
+        path=$(readlink $path);
+    done;
+    echo $path
+}

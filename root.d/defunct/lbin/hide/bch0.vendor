@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+[   $0. == ${BASH_SOURCE[0]}. ] && dot= && fin=exit
+[ ! $0. == ${BASH_SOURCE[0]}. ] && dot=.  && fin=return
+
+
+
+main () {
+
+    echo $*
+    echo dot is $dot
+    echo fin is $fin
+    return
+}
+
+main "$@"
+echo done
+$fin
+
+
+
+
+
+
+
+
+
+main() 
+d=$(readlink ${BASH_SOURCE[0]}).d
+this=$(readlink ${BASH_SOURCE[0]})
+d=${t}.d
+target=${this}.d/$1
+shift
+
+[ -f ${target} ] && {
+    [ "${dot}" == "" ] && {
+        ${target} $*
+        exit $?
+    } || {
+        . ${target} $*
+        return
+    }
+}
+
+echo USAGE:
+echo "    $(basename ${this}) SUBCOMMAND"
+echo
+echo SUBCOMMANDS:
+for name in $(ls ${this}.d); do
+    echo "    $name"
+done
+
+
+
+
+
+echo dot is $dot 
+echo fin is $fin
+$fin
+echo unreachable
+

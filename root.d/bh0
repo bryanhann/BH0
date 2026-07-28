@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+this=${BASH_SOURCE[0]}
+export BH0=$(readlink $this)
+export BH0_BATS=$BH0.bats
+export BH0_INIT=$BH0.init
+export BH0_TESTS=$(dirname $BH0)/tests
+
+source $BH0_INIT/init.sh
+
+d=$(:dot $0)
+f=$(:fin $0)
+
+[ $1x$d == x. ] && return
+
+[ $1. == --test. ] && {
+    $BH0_TESTS/runtests
+    $f
+}
+
+[ $1. == --help. ] && {
+    0usage
+    $f
+}
+
+[ -f $BH0.d/$1 ] && {
+     $d $BH0.d/$*
+     $f $?
+}
+
+#0bold "try: bh0 --help"
+

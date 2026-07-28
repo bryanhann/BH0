@@ -1,0 +1,14 @@
+#!/bin/bash
+# Inside the third script:
+
+# Get 2nd script (Parent)
+PARENT_PID=$PPID
+PARENT_NAME=$(cat /proc/$PARENT_PID/comm)
+
+# Get 1st script (Grandparent)
+GRANDPARENT_PID=$(awk '{print $4}' /proc/$PARENT_PID/stat)
+GRANDPARENT_NAME=$(cat /proc/$GRANDPARENT_PID/comm)
+
+echo "Executed by (2nd script): $PARENT_NAME (PID: $PARENT_PID)"
+echo "Originally called by (1st script): $GRANDPARENT_NAME (PID: $GRANDPARENT_PID)"
+

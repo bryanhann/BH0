@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+[ "${BCH_BASE}" == "" ] && echo BCH_BASE not set
+
+this=$(basename ${BASH_SOURCE[0]})
+
+one () {
+    local dst
+    local target1
+    local target2
+    dst=${BCH_BASE}/${1}
+    target1=${dst}/activate.sh
+    target2=${dst}/.bch/activate.sh
+    [ -f $target1 ] && echo yes $target1 || echo no $target1
+    [ -f $target1 ] && source $target1
+    [ -f $target2 ] && echo yes $target2 || echo no $target2
+    [ -f $target2 ] && source $target2
+}
+
+all () { for name in $(bch.cfg.locals all); do one $name ; done ; }
+cfg () { for name in $(bch.cfg.locals cfg); do one $name ; done ; }
+nnn () { for name in $(bch.cfg.locals nnn); do one $name ; done ; }
+
+[ ! ${0}. == ${BASH_SOURCE[0]}. ] && {
+    case $1. in
+        one.|all.|cfg.|nnn.)  $* ;  return ;;
+    esac
+}
+
+
+cat << EOF
+usage:
+    . ${this} [one NAME|all|cfg|nnn]
+
+    it must be sourced
+EOF

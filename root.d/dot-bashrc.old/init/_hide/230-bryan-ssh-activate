@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-[ -f ~/.ssh/bryan/activate.sh ] || ::warn:: "missing ~/.ssh/bryan/activate.sh"
-[ -f ~/.ssh/bryan/activate.sh ] && source  ~/.ssh/bryan/activate.sh

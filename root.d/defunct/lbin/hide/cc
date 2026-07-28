@@ -1,0 +1,7 @@
+#!/bin/bash
+
+read
+    while true; do
+        read a
+        echo XXX $a
+    done

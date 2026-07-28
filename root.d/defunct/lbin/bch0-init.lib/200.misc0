@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+source0 () { source ${BCH0_LIB}/$* ; }
+strip0 () { echo $@          ; }
+bold0  () { clr_bold "$*"    ; }
+
+basename0 () {
+    [ $1. == . ] && return
+    echo $(basename $(resolve0 $1))
+}
+
+usage0 () {
+    echo "USAGE:"
+    bold0 "    $(cmdline0) SUBCOMMAND"
+    echo SUBCOMMANDS:
+    for name in $(ls $bin); do
+        [ -f ${bin}/${name} ] && bold0 "    $name"
+    done
+    echo
+    echo "(some commands accept '--help')"
+}

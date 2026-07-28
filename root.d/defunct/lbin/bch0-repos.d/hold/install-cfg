@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+for name in $(bch.cfg locals-cfg); do
+    bch.cfg install-one $name
+done

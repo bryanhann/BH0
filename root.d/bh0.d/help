@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+. bh0
+usage0
+exit
+echo ++[${BASH_SOURCE[0]}] $*
+echo dot: $dot
+echo fin: $fin
+echo --[${BASH_SOURCE[0]}] $*
+

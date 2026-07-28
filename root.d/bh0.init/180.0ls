@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+0ls () {
+    0isdir $1 || return
+    for x in $(ls $1); do
+        echo $1/$x
+    done
+}

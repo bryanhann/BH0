@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+link0 () {
+    local real=$1
+    local link=$2
+    local true=$(resolve0 $link)
+    isfile0  $real       || return 1
+    iseq0    $real $true && return 0
+    rmlink0  ${link}     || return 2
+    echo "\$ ln -s ${real} ${link}"
+    ln -s ${real} ${link}
+}
+
+
+

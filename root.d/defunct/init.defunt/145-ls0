@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ls0 () {
+    [ $1. == . ] && return
+    [ -d $1    ] || return
+    local name
+    for name in $(ls $1); do
+        echo $1/$name
+    done
+}

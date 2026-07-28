@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+cd $(dirname $0)
+tests=$PWD/test
+for name in $(ls $tests | sort | grep ^[0-9] ); do
+    $tests/$name
+done

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+main () {
+    # DETERMINE WHETHER CALLED OR SOURCED
+    local this=${BASH_SOURCE[0]}
+    local real=$(readlink ${this})
+    if [ ${this}. == ${0}. ]; then
+        export dot=
+        export fin=exit
+        export bin=${real}.d
+        export cmd=$(basename ${this})
+    else
+        local dot=.
+        local fin=return
+        local bin=${real}.d
+        local cmd=$(basename ${this})
+    fi
+    if [ -f ${bin}/$* ]; then
+        $dot ${bin}/$*
+        $fin $?
+    else
+        $dot ${bin}/help $*
+        $fin $?
+    fi
+}
+main "$@"
+
+echo
+echo end of script
+echo
+echo this is $this
+echo dot is $dot
+echo fin is $fin 
+
+
+local 6

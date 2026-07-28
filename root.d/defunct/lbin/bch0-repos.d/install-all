@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+s () {
+    [   -f $1 ] && echo "yes  $1"
+    [   -f $1 ] &&  $1
+}
+
+for name in $(bch.cfg locals-all); do
+    s ${BCH_BASE}/${name}/install.sh
+done

@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+source $(readlink ${BASH_SOURCE[0]}).d/init.sh foo bar
+
+1/0
+__map () {
+    local fn=$1
+    shift
+    for ii in $*; do $fn $ii ; done
+}
+__s   () { echo git@github.com:bryanhann   ; }
+#__d   () { echo ${_BCH_ROOT}               ; }
+__d   () { echo ~/.bch.tmp                ; }
+__s4  () { echo $(__s)/${1}                ; }
+__d4  () { echo $(__d)/${1}                ; }
+
+
+__s_all  () { gh repo list --no-archived -L 1000 --json name,owner --jq .[].name; }
+__s_cfg  () { __s_all | grep ^bch\.config\.        ; }
+__s_nnn  () { __s_all | grep ^bch\.[0-9][0-9][0-9] ; }
+
+__d_all  () { ls $(__d); }
+__d_cfg  () { __d_all | grep ^bch\.config\.        ; }
+__d_nnn  () { __d_all | grep ^bch\.[0-9][0-9][0-9] ; }
+
+__clone_nnn () { __map __clone4 $(__s_nnn) ; }
+__clone_cfg () { __map __clone4 $(__s_cfg) ; }
+__install_nnn () { __map __install4 $(__d_nnn); }
+__install_cfg () { __map __install4 $(__d_cfg); }
+__activate_nnn () { __map __activate4 $(__d_nnn); }
+__activate_cfg () { __map __activate4 $(__d_cfg); }
+
+__clone4 () {
+    src=$(__s4 $1)
+    dst=$(__d4 $1)
+    [   -e $dst ] && echo found ${dst}
+    [   -e $dst ] && continue
+    [ ! -e $dst ] && echo "}}} git clone ${src} ${dst}"
+    [ ! -e $dst ] &&           git clone ${src} ${dst}
+}
+
+__install4 () {
+   target=$(__d)/${1}/install.sh
+   [ -f $target  ] && echo "INSTALLING: ${target}"
+   [ -f $target  ] && ${target}
+}
+__activate4 () {
+   target1=$(__d)/${1}/activate.sh
+   target2=$(__d)/${1}/.bch/activate.sh
+   echo xxxxxxx $target1
+   [ -f $target1  ] && echo "ACTIVATING: ${target1}"
+   [ -f $target1  ] && source ${target1}
+   [ -f $target2  ] && echo "ACTIVATING: ${target2}"
+   [ -f $target2  ] && source ${target2}
+}
+
+
+
+[ "$0" == "${BASH_SOURCE[0]}" ] && s=false || s=true
+echo sourced: $s
+[ -d $(__d) ] || mkdir $(__d)
+$*
+

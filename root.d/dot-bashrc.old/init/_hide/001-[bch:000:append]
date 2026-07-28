@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-bch:000:append () {
-     [ ${1}. == . ] && return
-     [[ ":$PATH:" == *":${1}:"* ]] && return
-     :::dbg:: ${FUNCNAME} $*
-     export PATH=${PATH}:${1}
-}

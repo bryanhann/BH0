@@ -1,0 +1,54 @@
+#!/usr/bin/env bh0.bats
+setup() {
+    source $BH0_INIT/init.sh
+    load 'test_helper/bats-support/load'
+    load 'test_helper/bats-assert/load'
+    tmp=~/tmp/$RANDOM
+    mkdir -p $tmp
+    MYREAL=$tmp/real
+    MYLINK1=$tmp/link1
+    MYLINK2=$tmp/link2
+    touch $MYREAL
+    ln -s $MYREAL $MYLINK1
+    ln -s $MYLINK1 $MYLINK2
+}
+ 
+err () {
+    local e=$1
+    shift
+    run $*
+    [ "$status" -eq $e ]
+}
+@test "0export" {
+    unset foo        ; [ $foo. == .     ]
+    0export foo bar  ; [ $foo. == bar.  ]
+    0export foo      ; [ $foo. == .     ]
+}
+@test "readlink link2 " { run readlink $MYLINK2 ; assert_output $MYLINK1 ; }
+@test "readlink link1 " { run readlink $MYLINK1 ; assert_output $MYREAL  ; }
+@test "readlink real  " { run readlink $MYREAL  ; assert_output ""       ; }
+@test "0resolve link2 " { run 0resolve $MYLINK2 ; assert_output $MYREAL  ; }
+@test "0resolve link1 " { run 0resolve $MYLINK1 ; assert_output $MYREAL  ; }
+@test "0resolve real  " { run 0resolve $MYREAL  ; assert_output $MYREAL  ; }
+#    run 0resolve $MYLINK1
+#    assert_output $MYREAL
+#    run 0resolve $MYREAL
+#    assert_output $MYREAL
+#}
+
+@test "err 1 0islink       " { err 1 0islink          ; }
+@test "err 2 0islink real  " { err 2 0islink $MYREAL  ; }
+@test "err 0 0islink link1 " { err 0 0islink $MYLINK1 ; }
+@test "err 0 0islink link2 " { err 0 0islink $MYLINK2 ; }
+
+@test "err 0 0isdir /dev " { err 0 0isdir /dev   ; }
+@test "err 1 0isdir      " { err 1 0isdir        ; }
+@test "err 2 0isdir /foo " { err 2 0isdir /foo   ; }
+@test "err 0 0arg x    " { err 0 0arg x       ; }
+@test "err 1 0arg      " { err 1 0arg         ; }
+@test "err 0 0null     " { err 0 0null        ; }
+@test "err 1 0null x   " { err 1 0null x      ; }
+@test "err 1 0export   " { err 1 0export     ; }
+@test "err 0 0export x " { err 0 0export  x   ; }
+
+

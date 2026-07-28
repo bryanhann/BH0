@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+unset err0
+err0 () {
+    clr_bold "err0(): file:  ${BASH_SOURCE[1]}"
+    clr_bold "err0(): error: $@"
+}

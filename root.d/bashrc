@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+this=$(readlink ${BASH_SOURCE[0]})
+here=$(dirname $this)
+
+link=~/.local/bin/bh0
+rm ~/.local/bin/bh0 2> /dev/null
+ln -s $here/bh0 ~/.local/bin/bh0 2> /dev/null
+
+x () {
+    . bh0
+    . $1
+}
+x $here/bashrc.d/init.sh

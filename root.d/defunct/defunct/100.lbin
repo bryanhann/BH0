@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+:lbin: ${here}/lbin
+:lbin: ${here}/vendor/lbin
+

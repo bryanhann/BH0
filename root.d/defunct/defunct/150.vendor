@@ -1,0 +1,2 @@
+. bch.vendor.bash_colors.sh --activate
+. bch.vendor.bash-fun.sh --activate

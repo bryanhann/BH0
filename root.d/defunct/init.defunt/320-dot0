@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+dot0 () {
+    local zero=$1
+    local link=$2
+    [   ${zero}. == ${link}. ] && export dot=
+    [   ${zero}. == ${link}. ] && export fin=exit
+    [ ! ${zero}. == ${link}. ] && dot=.
+    [ ! ${zero}. == ${link}. ] && fin=return
+}

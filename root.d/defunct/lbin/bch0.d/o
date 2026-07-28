@@ -1,0 +1,2 @@
+[ $1. == --help. ] && usage0
+[ $1. == --help. ] && echo cone && $fin

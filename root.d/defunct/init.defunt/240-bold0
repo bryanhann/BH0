@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+bold0 () {
+    clr_bold "$@"
+}

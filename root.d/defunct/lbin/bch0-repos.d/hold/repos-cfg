@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bch.cfg repos-all  | grep ^bch\.config\.

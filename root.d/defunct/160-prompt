@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+# This defaults to printing text in black, which
+# is not readable with black screen backgrounds.
+# We rely on the evironment variable "MAGIC_SCHEME"
+# to be set to 'black' to print in white instead.
+
+[ $MAGIC_SCHEME. == black. ] && MAGIC_TEXT=clr_white
+[ $MAGIC_SCHEME. == black. ] || MAGIC_TEXT=clr_black
+
+
+:prompt:dark () {
+    export MAGIC_SCHEME=black
+}
+
+:prompt:light () {
+    unset MAGIC_SCHEME
+}
+
+:fix_exit () {
+    clr_bold clr_black -n '['
+    [ $1. == 0. ] && clr_bold clr_green -n $1
+    [ $1. == 0. ] || clr_bold clr_red   -n $1
+    clr_bold clr_black -n ']'
+}
+
+fix_hash_bang () {
+    clr_bold clr_black           -n '['
+    clr_bold clr_green           -n "$1/$2"
+    clr_bold clr_black           -n ']'
+}
+
+fix_w () {
+    clr_bold $MAGIC_TEXT "$1"
+}
+
+fix_u_h () {
+    clr_bold clr_black           -n '['
+    clr_bold clr_green           -n "$1@$2"
+    clr_bold clr_black           -n ']'
+}
+
+:prompt:main () {
+PS1='\
+\n\
+┌─\
+$(:fix_exit $?)\
+$(fix_hash_bang \# \!)\
+$(fix_u_h \u \h)\
+$(__git_ps1 " (%s)")\
+\n\
+│ \
+$(fix_w \w)\
+\n\
+└─\
+\\$ '
+}
+
+:prompt.current () {
+    ${BH_BH_PROMPT:=:p.m}
+}
+
+:p.m () {
+    export BH_BH_PROMPT=:p.m
+    :prompt:main
+}
+
+:p.s () {
+    export BH_BH_PROMPT=:p.s
+    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+}
+
+:p.l () {
+    export BH_BH_PROMPT=:p.l
+    PS1='[#\#] [\u@\h \w$(__git_ps1 " (%s)")]\$ '
+}
+
+:p.q () {
+    : use quick prompt.
+    :
+    : Make the prompt respond rapidly to aid in zjots.
+    : Inter alia, do not call function [__git_ps1].
+    : --------------------------------------------------------
+    : We export the name of this function to BH_BH_PROMPT 
+    : so that subshells will know what our current prompt is.
+    : --------------------------------------------------------
+    export BH_BH_PROMPT=:p.q
+    PS1='[\u@\h \W]\$ '
+}
+
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCONFLICTSTATE="yes"
+GIT_PS1_SHOWCOLORHINTS=1
+
+# set the current prompt.
+:prompt.current

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+0resolve () { 
+    0islink $1 && 0resolve $(readlink $1) || echo $1 ; }

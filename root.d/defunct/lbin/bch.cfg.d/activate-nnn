@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for name in $(bch.cfg locals-nnn); do
+    . bch.cfg activate-one $name
+done

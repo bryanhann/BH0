@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+invoke0 () {
+    echo BEGIN===================================
+    caller=$(resolve0 ${BASH_SOURCE[1]})
+    prefix=
+        echo $ii $pth
+    echo 999 $(ps -o args= -p $PPID)
+    for ii in 1 2 3 4 5; do
+        pth=${BASH_SOURCE[$ii]}
+        echo $ii $pth
+        continue
+#        [ ${pth}. == . ] && break
+        pth=$(resolve0 $path)
+        prefix="$(basename0 $pth) ${prefix}"
+    done
+    bold0 "caller: ${caller}"
+    bold0 "previx: $prefix"
+    echo zero $0
+    echo cmd $cmd
+    echo bin $bin
+    echo arg: $*
+    echo END===================================
+    return
+    echo bb ${BASH_SOURCE[0]}
+    echo ===================
+    echo aa $(resolve0 $0)
+    echo 00 $(resolve0 ${BASH_SOURCE[0]})
+    echo 01 $(resolve0 ${BASH_SOURCE[1]})
+    echo 02 $(resolve0 ${BASH_SOURCE[2]})
+}
+

@@ -1,0 +1,45 @@
+#!/bin/bash
+. bch0-init
+
+aaa0 () {
+    local found=false
+    local start=$BCH0__root_pid
+    local stop=$$
+    local found=false
+    cmdlist=
+    while true; do
+         read pid cmd arg1 rest || break
+         [ $pid. == ${start}. ] && found=true 
+         [ $found. == true. ] || continue
+         [ ${arg1}. == .    ] && continue
+         name=$(basename $(resolve0 ${arg1}))
+         echo 777 $name
+         cmdlist="${cmdlist} ${name}"
+         [ $pid. == ${stop}. ] && break
+    done
+    echo qqq $cmdlist
+}
+
+cmdlist0 () {
+    ps -o pid= -o args= | sort | aaa0
+}
+
+
+main0
+exit
+
+get_ancestors() {
+    CALLER_PID=$$
+    local pid=$1
+    #echo XXX $ppid $PPID $$
+    # Look up the Parent PID (PPID) of the current PID
+    local ppid=$(ps -o ppid= -p "$pid" 2>/dev/null | xargs)
+    echo
+    local ppid=$(ps -o ppid= -p "$pid" 2>/dev/null | xargs)
+    
+    # Stop recursion if PPID is empty or reaches 0
+    if [[ -n "$ppid" && "$ppid" -ne 0 ]]; then
+        get_ancestors "$ppid"
+    fi
+}
+

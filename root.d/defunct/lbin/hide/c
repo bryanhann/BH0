@@ -1,0 +1,22 @@
+#!/bin/bash
+. bch0-init
+
+cmdline0
+echo 888
+exit
+
+get_ancestors() {
+    CALLER_PID=$$
+    local pid=$1
+    #echo XXX $ppid $PPID $$
+    # Look up the Parent PID (PPID) of the current PID
+    local ppid=$(ps -o ppid= -p "$pid" 2>/dev/null | xargs)
+    echo
+    local ppid=$(ps -o ppid= -p "$pid" 2>/dev/null | xargs)
+    
+    # Stop recursion if PPID is empty or reaches 0
+    if [[ -n "$ppid" && "$ppid" -ne 0 ]]; then
+        get_ancestors "$ppid"
+    fi
+}
+

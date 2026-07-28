@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+all () { gh repo list --no-archived -L 1000 --json name,owner --jq .[].name; }
+
+cfg () { all  | grep ^bch\.config\. ;  }
+nnn () { all  | grep ^bch\.[0-9][0-9][0-9]\. ;  }
+
+$*

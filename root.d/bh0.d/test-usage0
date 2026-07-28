@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+. bh0
+0usage $0
+

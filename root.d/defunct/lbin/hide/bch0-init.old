@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+. ${BCH0_VENDOR}/bash_colors.sh
+. ${BCH0_VENDOR}/git-prompt.sh
+. ${BCH0_VENDOR}/bash-fun/src/fun.sh
+
+source0 () { source ${BCH0_LIB}/$* ; }
+strip0 () { echo $@          ; }
+bold0  () { clr_bold "$*"    ; }
+
+basename0 () {
+    [ $1. == . ] && return
+    echo $(basename $(resolve0 $1))
+}
+
+usage0 () {
+    echo "USAGE:"
+    bold0 "    $(cmdline0) SUBCOMMAND"
+    echo SUBCOMMANDS:
+    for name in $(ls $bin); do
+        [ -f ${bin}/${name} ] && bold0 "    $name"
+    done
+    echo
+    echo "(some commands accept '--help')"
+}
+
+resolve0 () {
+    local path=$1
+    while true; do
+        readlink $path > /dev/null || break
+        path=$(readlink $path)
+    done
+    echo $path
+}
+t=$(resolve0 ${BASH_SOURCE[0]}).lib;
+for name in $(ls ${t}); do
+    . $t/$name
+done

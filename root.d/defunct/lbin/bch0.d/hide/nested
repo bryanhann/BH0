@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+#================================================================
+# ${this} : the path by which this script was called or sourced
+# ${real} : the real path to this script with symlinks resolved
+#================================================================
+
+this=${BASH_SOURCE[0]}
+real=${this}
+while true; do
+    readlink $real > /dev/null || break
+    cmd0=
+    real=$(readlink $real)
+done
+
+#================================================================
+# if ${this} is symlink, clear ${cmd0}
+#================================================================
+
+ 
+#================================================================
+# set variables differently if called or sources
+# ${dot} : . or empty
+# ${fin} : return or exit
+# ${bin} : ${real}.d  (directory of subcommands)
+# ${cmd0} : basename of the command (use $this over $real)
+##================================================================
+
+if [ ${this}. == ${0}. ]; then
+    #------------------------------------------
+    # We were called
+    #------------------------------------------
+    export dot=
+    export fin=exit
+    export bin=${real}.d
+    export cmd0="${cmd0} $(basename ${this})"
+else
+    #------------------------------------------
+    # We were sourced
+    #------------------------------------------
+    dot=.
+    fin=return
+    bin=${real}.d
+    cmd0="${cmd0} $(basename ${this})"
+fi
+
+
+#================================================================
+# If subcommand [$1] is found, invoke it and finisish.
+#================================================================
+
+if [ -f ${bin}/$1 ]; then
+    $dot ${bin}/$*
+    $fin $?
+fi
+
+#================================================================
+# Else if subcommand [help] is found, invoke it and finish.
+#================================================================
+
+if [ -f ${bin}/help ]; then
+    $dot ${bin}/help $*
+    $fin $?
+fi
+
+#================================================================
+# Else handle usage here
+#================================================================
+
+cat << EOF
+
+USAGE:
+    ${cmd0} SUBCOMMAND
+SUBCOMMANDS:
+EOF
+for name in $(ls $bin); do
+    echo "    $name"
+done

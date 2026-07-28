@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+source ${BCH0_INIT}
+#. bch0-init
+bold0 foo
+read
+this=${BASH_SOURCE[0]}
+[ ! ${this}. == ${0}. ] && [ $1. ==       . ] && return
+[ ! ${this}. == ${0}. ] && [ $1. == --init. ] && return
+[ ! ${this}. == ${0}. ] && dot=.
+[ ! ${this}. == ${0}. ] && fin=return
+[   ${this}. == ${0}. ] && dot=
+[   ${this}. == ${0}. ] && fin=exit
+
+
+this=$(resolve0 $this)
+export BCH0__root_pid=$$
+
+[ -f ${this}.d/$1   ] && { $dot ${this}.d/$@   ; $fin $? ; }
+[ -f ${this}.d/help ] && { $dot ${this}.d/help ; $fin $? ; }
+[ true;             ] && { usage0              ; $fin $? ; )

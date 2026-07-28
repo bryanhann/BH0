@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+0init () {
+    for x in $(ls $1 | sort | grep ^[0-9]) ; do
+        0dbg  source $(basename $1)/$x
+        source ${1}/$x
+    done
+}

@@ -9,6 +9,8 @@
 */dot-config/uv
 
 #-----------------------------------------------------
+# bh0.bats is a submodule
+*/bh0.bats
 .venv
 __pycache__/
 *.py[cod]

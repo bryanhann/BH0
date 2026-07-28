@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+. bch0-init
+s () {
+    local name=$1
+    shift
+    [   -f $1 ] && dbg0 $(bold0 "activating: $name")
+    #[   -f $1 ] && echo "yes . $1"
+    [   -f $1 ] && . $1 > /dev/null
+}
+
+for name in $(bch.cfg locals-all); do
+    s ${name} ${BCH_BASE}/${name}/activate.sh
+    s ${name} ${BCH_BASE}/${name}/.bch/activate.sh
+done

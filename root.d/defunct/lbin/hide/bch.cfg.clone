@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+[ "${BCH_BASE}" == "" ] && echo BCH_BASE not set && exit
+
+src=git@github.com:bryanhann/$1
+dst=${BCH_BASE}/$1
+[ ! -e $dst ] && echo "}}} git clone ${src} ${dst}"
+[ ! -e $dst ] &&           git clone ${src} ${dst}
+

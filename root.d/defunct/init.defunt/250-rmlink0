@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+rmlink0 () {
+    [ -L $1 ] && rm $1
+    [ -e $1 ] && return 1
+    return 0
+} 
+
+
+

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+bash
+
+echo OUT OF BASH

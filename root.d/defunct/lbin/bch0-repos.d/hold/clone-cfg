@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+for name in $(bch.cfg repos-cfg); do
+    bch.cfg clone-one $name
+done

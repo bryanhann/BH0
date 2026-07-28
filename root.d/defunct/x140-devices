@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+activate () {
+    [ -f ${1}/activate.sh      ] && source ${1}/activate.sh
+    [ -f ${1}/.bch/activate.sh ] && source ${1}/.bch/activate.sh
+    [ -f ${1}/.bch/activate.sh ] && echo depricated: ${1}/.bch/activate.sh
+}
+
+for n in $(ls /Volumes); do activate /Volumes/${n}; done

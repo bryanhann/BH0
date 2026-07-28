@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+. ${BCH0_VENDOR}/bash_colors.sh
+. ${BCH0_VENDOR}/git-prompt.sh
+. ${BCH0_VENDOR}/bash-fun/src/fun.sh
+
+dbg0 () {
+    [ -f ~/DEBUG ] || return
+    echo ::DBG:: $*
+}
+resolve0 () {
+    local path=$1
+    while true; do
+        readlink $path > /dev/null || break
+        path=$(readlink $path)
+    done
+    echo $path
+}
+
+t=$(resolve0 ${BASH_SOURCE[0]}).lib;
+for name in $(ls ${t}); do
+    . $t/$name
+done

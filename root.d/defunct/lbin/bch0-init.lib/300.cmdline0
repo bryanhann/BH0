@@ -1,0 +1,31 @@
+#!/bin/bash
+
+__aaa0 () {
+    local found=false
+    local start=$BCH0__root_pid
+    local stop=$$
+    local found=false
+    cmdlist=
+    while true; do
+         read pid cmd arg1 rest || break
+         [ $pid. == ${start}. ] && found=true 
+         [ $found. == true. ] || continue
+         [ ${arg1}. == .    ] && continue
+         name=$(basename0 ${arg1})
+         cmdlist="${cmdlist} ${name}"
+         [ $pid. == ${stop}. ] && break
+    done
+    echo $cmdlist
+}
+
+cmdline0 () {
+    [ "${dot}" == "" ] && ps -o pid= -o args= | sort | __aaa0
+    [ "${dot}" == "" ] && return
+    acc=
+    for ii in 1 2 3 4 5; do
+        n=$(basename0 ${BASH_SOURCE[$ii]})
+        [ $n. == . ] && break
+        acc="${n} ${acc}" 
+    done
+    echo $acc
+}
