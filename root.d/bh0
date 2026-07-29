@@ -6,6 +6,9 @@ export BH0_BATS=~/.bh0.bats
 export BH0_INIT=$BH0.init
 export BH0_TESTS=$(dirname $BH0)/tests
 
+export BH0_BUILD=~/.bh0.build
+mkdir -p $BH0_BUILD
+
 source $BH0_INIT/init.sh
 
 d=$(:dot $0)
