@@ -2,7 +2,7 @@
 
 this=${BASH_SOURCE[0]}
 export BH0=$(readlink $this)
-export BH0_BATS=$BH0.bats
+export BH0_BATS=~/.bh0.bats
 export BH0_INIT=$BH0.init
 export BH0_TESTS=$(dirname $BH0)/tests
 
