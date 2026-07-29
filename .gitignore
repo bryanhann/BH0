@@ -11,6 +11,11 @@
 #-----------------------------------------------------
 # bh0.bats is a submodule
 */bh0.bats
+
+
+Ignore one letter names
+? 
+
 .venv
 __pycache__/
 *.py[cod]
