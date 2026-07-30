@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+_export () { export $1=$2 ; }
+
+_export BH0_INIT   $BH0.init
+_export BH0_TESTS  $BH0.tests
+_export BH0_SRC    $BH0.src
+_export BH0_BUILD  ${HOME}/.bh0.build
+_export BH0_BCH    $BH0_BUILD/bch
+_export BH0_BATS   $BH0_BUILD/bats
+source $BH0_INIT/init.sh
+echo fin bh1

@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+0__short () {
+    local bb=$(basename $1)
+    local dd=$(basename $(dirname $1))
+    echo $dd/$bb
+}
+0__head () {
+    short=$(0__short $1); shift
+    [ -f ~/DEBUG ] && echo ++[$short] $* >&2
+}
+
+0__tail () {
+    short=$(0__short $1); shift
+    [ -f ~/DEBUG ] && echo --[$short] $* >&2
+}
+
+0magic () {
+    local one=${BASH_SOURCE[1]}
+    local script=$(0resolve $one)
+    local bin=$script.d
+    0__head $script $*
+    if [ -f $bin/$1 ]; then 
+        $d $bin/$*
+        merr=$?
+    else
+       :usage $script
+    fi
+    0__tail $script $*
+    return $merr
+}
+
+0exit () {
+   err=$1
+   shift
+   [ ! $1. == . ] && 0bold "$*" >&2 
+   exit $err
+}
+
+0return () {
+   err=$1
+   shift
+   [ ! $1. == . ] && 0bold "$*" >&2 
+   return err
+}
+
+0bch_clone4name () {
+    name=$1
+    src=git@github.com:bryanhann/$name
+    dst=$BH0_BCH/$name
+    [   -e $dst ] && echo " local $name exists"
+    [ ! -e $dst ] && echo " local $name cloning"
+    [ ! -e $dst ] && git clone ${src} ${dst}
+}
+

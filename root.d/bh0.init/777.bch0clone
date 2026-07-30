@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+0bchClone () {
+    name=$1
+    src=git@github.com:bryanhann/$name
+    dst=$BH0_BCH/$name
+    [   -e $dst ] && echo " local $name exists"
+    [ ! -e $dst ] && echo " local $name cloning"
+    [ ! -e $dst ] && git clone ${src} ${dst}
+}

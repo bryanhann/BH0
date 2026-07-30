@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+$BH1
+0trace ++ ${BASH_SOURCE[0]}  $*
+echo f: $f
+echo d: $d
+
+0trace -- ${BASH_SOURCE[0]}  $*
+

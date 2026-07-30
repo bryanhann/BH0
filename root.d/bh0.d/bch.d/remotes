@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+$BH1
+
+cache=${BH0_BUILD}/remote-list-cache.txt
+
+repos () { 
+   gh repo list --no-archived -L 1000  --json name,owner --jq .[].name
+}
+
+update () {
+   repos > $cache
+}
+
+cache () {
+    [ -f $cache ] || update
+    cat $cache
+}
+
+case $1. in
+    --update.)
+        update
+        ;;
+    --nnn.)
+        cache | sort | grep ^bch\.[0-9] 
+        ;;
+    --all.)
+        cache | sort 
+        ;;
+    *)
+        echo 'usage: remotes [--update|--all|--nnn]'
+        ;;
+esac

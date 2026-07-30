@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+$BH1
+
+real=$1
+link=$2
+luck=$(0resolve $link)
+
+[ $real. == .      ] && 0exit 1 first arg required
+[ ! -e $real       ] && 0exit 2 nonexistant $real
+[ $luck. == $real. ] && 0exit 0 already created $link
+[ -L $link         ] && rm $link
+[ -e $link         ] && 0exit 3 cannot link $link
+ln -s $real $link
+0exit 0 0bold "ln -s $real $link"

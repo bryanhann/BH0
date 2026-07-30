@@ -6,6 +6,7 @@ magic_fn_762354 () {
     local base=$(basename $here)
     local name
     for name in $(ls $here | grep ^[0-9]); do
+#echo $target
         target=$here/$name
         debug=$base/$name
         [ -x ${target} ] && dot= || dot=.

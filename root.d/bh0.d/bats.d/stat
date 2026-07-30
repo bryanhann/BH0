@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+$BH1
+
+[   -d $BH0_BATS ] && 0bold "bats is installed" && exit 0
+[ ! -d $BH0_BATS ] && 0bold "bats is not installed" && exit 1

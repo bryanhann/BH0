@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-[ -d $BH0_BATS ] && exit
-
-core=https://github.com/bats-core
-
-git clone $core/bats-core.git     $BH0_BATS/test/bats
-git clone $core/bats-support.git  $BH0_BATS/test/test_helper/bats-support
-git clone $core/bats-assert.git   $BH0_BATS/test/test_helper/bats-assert

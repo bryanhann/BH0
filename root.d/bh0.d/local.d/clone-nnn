@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+for repo in $(bh0 repos | sort | grep ^bch\.[0-9] ); do
+    bh0 local clone $repo
+done

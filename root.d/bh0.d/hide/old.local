@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+. bh0
+echo 88888888888 $*
+x () {
+    local real=$1
+    local zero=$2
+    shift 2
+    [ ! $real. == ${BASH_SOURCE[0]}. ] && echo mismatch1 && read
+    [ ! $zero. == $0.                ] && echo mismatch2 && read
+
+    [   $real. == $zero. ] && dot=  && fin=exit
+    [ ! $real. == $zero. ] && dot=. && fin=return
+
+    [ -f $real.d/$1 ] && {
+         echo dddd $dot $real.d/$*
+         $dot $real.d/$*
+         $fin $?
+    }
+    0bold try:
+    for name in $(ls ${real}.d); do
+        0bold "    $name"
+    done
+    $fin
+}
+
+#x $*
+x ${BASH_SOURCE[0]} $0 $*
+
+echo 
+read
+
+[ $0. == ${BASHX
+echo ${BASH_SOURCE[0]} $*
+[ -f ${BASHS0.d/$1 ] && {
+    $0.d/$*
+    exit $?
+}
+
+bh0:handle () {
+    local zero=$1
+    shift
+    echo 666 $zero.d/$*
+    [ -f $zero.d/$1 ] && {
+        echo 666 $zero.d/$*
+        exit $?
+    }
+    bh0:usage $0
+}         
+bh0:usage () {
+    0bold try:
+    for name in $(ls $1.d); do
+        0bold "    $(basename $1) $name"
+    done
+    exit
+}
+
+   

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+#====================================================
+#  The local bin (BCH_LBIN)
+#----------------------------------------------------
+#  Configure our preferred path to our local bin.
+#  Guarantee it exists and is on PATH.
+#====================================================
+
+    export BCH_LBIN=${HOME}/.local/bin
+    mkdir -p ${BCH_LBIN}
+    if [[ ! ":${PATH}:" == *":${BCH_LBIN}:"* ]]
+    then
+        export PATH=${PATH}:${BCH_LBIN}
+    fi
+

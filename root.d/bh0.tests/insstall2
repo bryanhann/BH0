@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cd $(dirname $0)
+
+link=~/.local/bin/bh0.bats
+real=$BH0_BATS/test/bats/bin/bats
+rm $link 2> /dev/null
+ln -s $real $link
+
+
+src=$BH0_BATS/test
+dst=$PWD/test
+
+for name in $(ls $src); do
+    rm $dst/$name > /dev/null
+    ln -s $src/$name $dst/$name
+done

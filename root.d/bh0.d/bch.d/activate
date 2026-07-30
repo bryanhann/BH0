@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+$BH1
+
+__activate () {
+    local path=$BH0_BCH/$1
+    local x
+    local target
+    for x in activate activate.sh .bch/activate .bch/activate.sh; do
+        target=$path/$x
+        [ ! -f $target ] && continue
+        0bold . $target
+        . $target
+    done 
+}
+
+
+case $1. in 
+    -h.|--help.|.)
+        echo 'usage: activate [--nnn|--all|NAME]'
+        ;;
+    --all.)
+        bh0 bch locals --all | map __activate
+        ;;
+    --nnn.)
+        bh0 bch locals --nnn | map __activate
+        ;;
+    *)
+        __activate $1
+        ;;
+esac

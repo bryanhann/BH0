@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+$BH1
+0trace ++ ${BASH_SOURCE[0]}  $*
+foo () {
+    echo foo is alive
+}
+0trace -- ${BASH_SOURCE[0]}  $*
+

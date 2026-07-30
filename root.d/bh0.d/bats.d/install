@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+$BH1
+
+core=https://github.com/bats-core
+
+git clone $core/bats-core.git     $BH0_BATS/test/bats
+git clone $core/bats-support.git  $BH0_BATS/test/test_helper/bats-support
+git clone $core/bats-assert.git   $BH0_BATS/test/test_helper/bats-assert
+
+0link $BH0_BATS/sssstest/bats/src/bin/bats ~/.local/bin/bh0.bats

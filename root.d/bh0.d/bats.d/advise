@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+$BH1
+
+bh0 bats stat > /dev/null && exit
+0bold "try: bh0 bats install"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+$BH1
+
+__install () {
+    local path=$BH0_BCH/$1
+    local x
+    local target
+    for x in install install.sh; do
+        target=$path/$x
+        [ ! -f $target ] && continue
+        0bold $target
+        $target
+    done 
+}
+
+
+case $1. in 
+    -h.|--help.|.)
+        echo 'usage: install [--nnn|--all|NAME]'
+        ;;
+    --all.)
+        bh0 bch locals --all | map __install
+        ;;
+    --nnn.)
+        bh0 bch locals --nnn | map __install
+        ;;
+    *)
+        __install $1
+        ;;
+esac

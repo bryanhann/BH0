@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+0repo4name () {
+    echo $BH0_BCH/$1
+}

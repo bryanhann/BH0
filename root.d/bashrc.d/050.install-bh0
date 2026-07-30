@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+_export () { export $1=$2 ; }
+
+here=$(dirname ${BASH_SOURCE[0]})
+real=$(dirname $here)
+link=~/.local/bin
+export BH0=$real/bh0
+_export BH0_INIT   $BH0.init
+_export BH0_TESTS  $BH0.tests
+_export BH0_SRC    $BH0.src
+_export BH0_BUILD  ${HOME}/.bh0.build
+_export BH0_BCH    $BH0_BUILD/bch
+_export BH0_BATS   $BH0_BUILD/bats
+
+rm $link/bh0      2> /dev/null
+ln -s $real/bh0       $link/bh0
+
+export BH1="source $BH0.init/init.sh"
+
+$BH1

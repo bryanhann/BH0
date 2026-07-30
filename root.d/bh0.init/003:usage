@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+:usage () {
+    0bold try:
+    for name in $(ls $1.d); do
+        [ -f $1.d/$name ] || continue 
+        0bold "    $(basename $1) $name"
+    done
+}
+#!/usr/bin/env bash
+
+:handle () {
+    local zero=$1
+    shift
+    [ -f $zero.d/$1 ] && {
+        $zero.d/$*
+        exit $?
+    }
+    :usage $0
+}

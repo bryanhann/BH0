@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+for repo in $(bh0 local list); do
+    bh0 local install $repo
+done

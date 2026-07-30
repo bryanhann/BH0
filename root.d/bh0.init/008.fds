@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+:f () { [ ! -f $0 ] && echo return || echo exit ; }
+:d () { [ ! -f $0 ] && echo .      || echo ; }
+
+0fds () {
+    [ ! $0. == . ] && [ -f $0 ] && {
+        f=exit
+        d=
+        return 1
+    } || {
+        f=return
+        d=.
+        return 0
+    }
+}

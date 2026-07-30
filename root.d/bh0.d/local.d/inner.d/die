@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-export merr=
 $BH1
 0fds
-0magic $*
+$f $1

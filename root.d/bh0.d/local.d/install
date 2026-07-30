@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+. bh0
+[ -f $BCH/$1/install    ] && 0bold "$BCH/$1/install"
+[ -f $BCH/$1/install    ] &&        $BCH/$1/install
+[ -f $BCH/$1/install.sh ] && 0bold "$BCH/$1/install.sh"
+[ -f $BCH/$1/install.sh ] &&        $BCH/$1/install.sh
+

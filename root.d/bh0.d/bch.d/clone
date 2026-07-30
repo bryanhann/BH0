@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+$BH1
+__clone () 
+{ 
+    name=$1;
+    src=git@github.com:bryanhann/$name;
+    dst=$BH0_BCH/$name;
+    [ -e $dst ] && echo " local $name exists";
+    [ ! -e $dst ] && echo " local $name cloning";
+    [ ! -e $dst ] && git clone ${src} ${dst}
+}
+
+case $1. in 
+    -h.|--help.|.)
+        echo usage: 'clone [--all|--nnn|NAME]'
+        ;;
+    --nnn.)
+        bh0 bch remotes --nnn | map __clone
+        ;;
+    --all.)
+        bh0 bch remotes --all | map __clone
+        ;;
+    *)
+        __clone $1
+        ;;
+esac

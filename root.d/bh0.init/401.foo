@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+0foo () {
+    echo foo
+}
+#0activate4path () {
+#    [ -f $1/activate    ] && 0bold ". $1/activate"
+#    [ -f $1/activate.sh ] &&        . $1/activate
+#    [ -f $1/activate.sh ] && 0bold ". $1/activate.sh"
+#    [ -f $1/activate.sh ] &&        . $1/activate.sh
+#}
+#echo 667

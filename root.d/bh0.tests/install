@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+$BH1
+cd $(dirname $0)
+bh0 link $BH0_BATS/test/bats        $PWD/test/bats
+bh0 link $BH0_BATS/test/test_helper $PWD/test_helper

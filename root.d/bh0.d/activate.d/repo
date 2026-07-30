@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+$BH1 
+
+
+for x in activate activate.sh .bch/activate .bch/activate.sh; do
+    [ -f echo $1/$x
+done
+

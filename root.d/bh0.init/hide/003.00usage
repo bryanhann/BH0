@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+0usage () {
+    0bold try:
+    for name in $(ls $1.d); do
+        0bold "    $(basename $1) $name"
+    done
+}

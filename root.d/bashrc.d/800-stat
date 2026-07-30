@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bh0 bats stat

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#====================================================
+#  Exit control
+#----------------------------------------------------
+#  Intercept the 'exit' command to prevent
+#  accidentaly closing a terminal session
+#====================================================
+
+    print_exit_warning () { 
+        echo
+        echo "    ################################"
+        echo "    #  YOU ARE IN THE LOGIN SHELL  #"
+        echo "    #  use 'builtin exit' to exit  #"
+        echo "    ################################"
+        echo
+    }
+
+    exit () { 
+        print_exit_warning 
+    }
+
+

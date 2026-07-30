@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#0null   () { [   $1. == . ] ; }
+0zero   () { [   $1. == . ] ; }
+
+0handle () {
+    local real=$1
+    local zero=$2
+    shift
+    shift
+    [ ! -f $zero ] && dot=. && fin=return
+    [   -f $zero ] && dot=  && fin=exit
+    
+    [ -f ${real}.d/$1 ] && {
+        echo 77777 $dot ${real}.d/$* ;
+        $dot ${real}.d/$* ;
+        $fin $?
+    }
+    echo try this:
+    ls ${real}.d
+}
+ 
+ 

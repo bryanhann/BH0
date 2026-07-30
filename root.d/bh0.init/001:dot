@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-
 :dot () { 
     [ ! -e $1 ] && echo .
+}
+
+:usage () {
+    0bold try:
+    for name in $(ls $1.d); do
+        clr_0bold "    $(basename $1) $name"
+    done
 }

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+$BH1
+
+for name in $(0ls $BH0_BCH); do
+    echo $(basename $name)
+done
+ 

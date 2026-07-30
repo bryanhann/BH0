@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+bh0 bats stat > /dev/null  || {
+    echo cannot run test without bats
+    bh0 bats advise
+    exit
+}
+
+cd $(dirname $0)
+./install
+tests=$PWD/test
+for name in $(ls $tests | sort | grep ^[0-9] ); do
+    $tests/$name
+done

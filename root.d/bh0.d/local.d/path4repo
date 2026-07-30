@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+echo $BH0_BCH/$1
