@@ -1,18 +1,9 @@
 #!/usr/bin/env bash
-
 echo ---.profile begin sourcing -----------------------
 source $(readlink ${BASH_SOURCE[0]}).d/init.sh
 echo ---.profile end sourcing -------------------------
-
 echo "to turn on debugging, try 'touch ~/DEBUG'"
-
-# start subshell to invoke .bashre
-
 bash
-
-# warn the user that he is in the login shell
-
 print_exit_warning
-
 # Nothing below this is under version control.
 
