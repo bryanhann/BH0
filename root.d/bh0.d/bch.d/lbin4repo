@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#:
+#:  Takes one argument: full path to a repo.
+#:
+#:  Creates symlinks
+#:      ln -s $1/lbin/NAME ~/.local/bin/NAME
+#:
+
+$BH1
+
+x () {
+    reponame=$(basename $1)
+    for name in $(ls $1/lbin | grep ^bch); do
+        real=$1/lbin/$name
+        link=~/.local/bin/$name
+        [ -L $link ] && rm $link
+        0bold "lbin: $reponame/lbin/$name"
+        ln -s $real $link
+    done
+}
+
+case $1. in 
+    .|-h|--help)
+        0bold "$(basename ${BASH_SOURCE[0]})"
+        cat ${BASH_SOURCE[0]} | grep ^\#:
+        ;;
+    *)
+        x $*
+        ;;
+esac
