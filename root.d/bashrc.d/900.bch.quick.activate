@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+$BH1
+
+if [ -f ~/.local/bin/bch.quick.activate ]; then
+    source bch.quick.activate
+else
+    0bold "not found: LBIN/bch.quick.activate"
+fi

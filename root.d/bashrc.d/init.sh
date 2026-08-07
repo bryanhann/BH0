@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-here=$(dirname ${BASH_SOURCE[0]})
-for name in $(ls $here | sort | grep ^[0-9]); do
-    echo $here/$name
-    source $here/$name
-done
+
+x () {
+    local here=$1
+    . ${1}/bash_colors.sh
+    for name in $(ls $here | sort | grep ^[0-9]); do
+        clr_bold ". [bashrc.d]/$name"
+        source $1/$name
+    done
+}
+x $(dirname ${BASH_SOURCE[0]})
